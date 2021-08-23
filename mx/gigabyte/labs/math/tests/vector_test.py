@@ -12,7 +12,7 @@ class VectorTest(unittest.TestCase):
         pass
 
     def test_vector_creacion(self):
-        v1 = Vector((2, 1))
+        v1 = Vector((69, 80))
         self.assertIsNotNone(v1)
         v1.grafica()
         print(v1)

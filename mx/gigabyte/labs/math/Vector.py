@@ -26,6 +26,7 @@ class Vector:
         # plt.show()
         plano_cartesiano = PlanoCartesiano()
         print(plano_cartesiano)
+        plano_cartesiano.agregar_linea(self.origen, self.punta, arrow=tkinter.LAST, width=2)
         plano_cartesiano.grafica()
 
 
