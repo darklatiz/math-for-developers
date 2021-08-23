@@ -5,7 +5,7 @@ import tkinter
 class PlanoCartesiano:
     """Clase que representa un plano cartesiano"""
 
-    def __init__(self, altura=250, ancho=300):
+    def __init__(self, altura=500, ancho=600):
         """Inicializamos el area de trabajo del plano cartesiano"""
         self.window = tkinter.Tk()
         self.altura = altura
@@ -17,8 +17,10 @@ class PlanoCartesiano:
         eje_y_punto_inicial = (self.ancho // 2, 0)
         eje_y_punto_final = (self.ancho // 2, self.altura)
 
-        self.agregar_linea(eje_x_punto_inicial, eje_x_punto_final)
-        self.agregar_linea(eje_y_punto_inicial, eje_y_punto_final)
+        self.agregar_linea(eje_x_punto_inicial, eje_x_punto_final, width=2, arrow=tkinter.BOTH)
+        self.agregar_linea(eje_y_punto_inicial, eje_y_punto_final, width=2, arrow=tkinter.BOTH)
+
+        # self.agregar_linea(eje_y_punto_inicial, eje_y_punto_final, dash=(2, 2), arrow=tkinter.BOTH)
 
         self.__origen = (self.ancho // 2, self.altura // 2)
 
@@ -26,11 +28,11 @@ class PlanoCartesiano:
         self.canvas.pack()
         self.window.mainloop()
 
-    def agregar_linea(self, punto_inicial, punto_final):
+    def agregar_linea(self, punto_inicial, punto_final, **kwargs):
         """Agrega una line al plano cartesiano"""
         pi_x, pi_y = punto_inicial
         pf_x, pf_y = punto_final
-        self.canvas.create_line(pi_x, pi_y, pf_x, pf_y, dash=(2, 2))
+        self.canvas.create_line(pi_x, pi_y, pf_x, pf_y, kwargs)
 
     @property
     def origen(self):
@@ -38,4 +40,3 @@ class PlanoCartesiano:
 
     def __str__(self):
         return f"Plano cartesiano con origen = {self.origen}"
-
