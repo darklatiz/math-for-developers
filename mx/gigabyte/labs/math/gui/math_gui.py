@@ -27,7 +27,26 @@ class PlanoCartesiano:
 
     def __transforma_coordenada(self, punto):
         """Transforma el punto en base al nuevo origen"""
-        return (punto[0] + self.__origen[0], punto[1] + self.__origen[1])
+        x_trasnformada = 0
+        y_trasnformada = 0
+
+        if punto[0] > 0 and punto[1] > 0:
+            x_trasnformada = self.origen[0] + abs(punto[0])
+            y_trasnformada = self.origen[1] - abs(punto[1])
+        elif punto[0] < 0 and punto[1] > 0:
+            x_trasnformada = self.origen[0] - abs(punto[0])
+            y_trasnformada = self.origen[1] - abs(punto[1])
+        elif punto[0] < 0 and punto[1] < 0:
+            x_trasnformada = self.origen[0] - abs(punto[0])
+            y_trasnformada = self.origen[1] + abs(punto[1])
+        elif punto[0] > 0 and punto[1] < 0:
+            x_trasnformada = self.origen[0] + abs(punto[0])
+            y_trasnformada = self.origen[1] + abs(punto[1])
+        else:
+            x_trasnformada = self.origen[0]
+            y_trasnformada = self.origen[1]
+
+        return (x_trasnformada, y_trasnformada)
 
     def agregar_linea(self, punto_inicial: tuple, punto_final: tuple, **kwargs):
         """Agrega una line al plano cartesiano"""
