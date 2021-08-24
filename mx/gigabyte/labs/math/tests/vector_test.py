@@ -30,5 +30,6 @@ class VectorTest(unittest.TestCase):
         plano_cartesiano.agregar_vector(v2, arrow=tkinter.LAST, width=2, fill="blue")
         plano_cartesiano.agregar_vector(v3, arrow=tkinter.LAST, width=2, fill="green")
         plano_cartesiano.agregar_vector(v4, arrow=tkinter.LAST, width=2, fill="red")
+        plano_cartesiano.agregar_vector(Vector.from_xy(100, -100), arrow=tkinter.LAST, width=2, fill="yellow")
+        plano_cartesiano.conecta_vectores(Vector.from_xy(100, -100), v1, arrow=tkinter.LAST, width=2, fill="yellow")
         plano_cartesiano.grafica()
-

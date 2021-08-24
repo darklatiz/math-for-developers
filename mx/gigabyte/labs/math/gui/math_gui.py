@@ -1,5 +1,6 @@
 """Modulo que provee de clases y metodos para poder crear graficas"""
 import tkinter
+from typing import overload
 
 from mx.gigabyte.labs.math.Vector import Vector
 
@@ -25,7 +26,7 @@ class PlanoCartesiano:
         self.canvas.pack()
         self.window.mainloop()
 
-    def __transforma_coordenada(self, punto):
+    def __transforma_coordenada(self, punto: tuple):
         """Transforma el punto en base al nuevo origen"""
         if punto[0] > 0 and punto[1] > 0:
             x_trasnformada = self.origen[0] + abs(punto[0])
@@ -51,8 +52,17 @@ class PlanoCartesiano:
         pf_x, pf_y = self.__transforma_coordenada(punto_final)
         self.canvas.create_line(pi_x, pi_y, pf_x, pf_y, kwargs)
 
+    def conecta_vectores(self, vector_inicial: Vector, vector_final: Vector, **kwargs):
+        pi_x, pi_y = self.__transforma_coordenada(vector_inicial.origen)
+        pf_x, pf_y = self.__transforma_coordenada(vector_inicial.punta)
+        self.canvas.create_line(pi_x, pi_y, pf_x, pf_y, kwargs)
+
+        pi_x, pi_y = self.__transforma_coordenada(vector_inicial.punta)
+        pf_x, pf_y = self.__transforma_coordenada(vector_final.punta)
+        self.canvas.create_line(pi_x, pi_y, pf_x, pf_y, kwargs)
+
     def agregar_vector(self, vector: Vector, **kwargs):
-        """Agrega el vector al plano cartesiano"""
+        """Agrega el vector al plano cartesiano tomando el origen como punto inicial"""
         self.agregar_linea(vector.origen, vector.punta, **kwargs)
 
     @property
