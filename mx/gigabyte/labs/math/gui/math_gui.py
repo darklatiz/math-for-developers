@@ -27,9 +27,6 @@ class PlanoCartesiano:
 
     def __transforma_coordenada(self, punto):
         """Transforma el punto en base al nuevo origen"""
-        x_trasnformada = 0
-        y_trasnformada = 0
-
         if punto[0] > 0 and punto[1] > 0:
             x_trasnformada = self.origen[0] + abs(punto[0])
             y_trasnformada = self.origen[1] - abs(punto[1])
